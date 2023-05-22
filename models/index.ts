@@ -1,5 +1,5 @@
 export declare class Product {
-  readonly id: string;
+  readonly _id: string;
   readonly image: string;
   readonly images: string[];
   readonly name: string;
@@ -16,13 +16,21 @@ export declare class Product {
 }
 
 export declare class Category {
-  readonly id: string;
+  readonly _id: string;
   readonly name: string;
   readonly src: string;
   readonly subCategories: string[];
 }
 
 export declare class Filtering {
-  readonly id: string;
+  readonly _id: string;
   readonly name: string;
+}
+
+export declare class User {
+  readonly _id: string;
+  readonly telefonNumarası: string;
+  readonly epostaAdresi: string;
+  readonly address: string;
+  readonly adSoyad: string;
 }

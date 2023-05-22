@@ -26,14 +26,18 @@ const LoginProvider = ({children}) => {
       //telefondaki token ile veritabanındaki token eşleşiyorsa kullanıcı giriş yapılı halde kalıyor
       if (res.data.success) {
         setIsLoggedIn(true);
+        setProfile(res.data.user);
+        await AsyncStorage.setItem('profile', JSON.stringify(res.data.user));
       }
       //tokenler eşleşmiyorsa kullanıcının yeniden giriş yapması isteniyor
       else {
         setIsLoggedIn(false);
+        await AsyncStorage.removeItem('profile');
       }
       setLoginPending(false);
     } else {
       setIsLoggedIn(false);
+      await AsyncStorage.removeItem('profile');
       setLoginPending(false);
     }
   };

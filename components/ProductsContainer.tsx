@@ -1,4 +1,4 @@
-import {FlatList, View} from 'react-native';
+import {View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import ProductItem from './ProductItem';
 import client from '../api/client';

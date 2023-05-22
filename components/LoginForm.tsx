@@ -53,6 +53,7 @@ const LoginForm = () => {
         });
         setIsLoggedIn(true);
         setProfile(res.data.user);
+        console.log(res?.data.user);
       }
       //giriş hatalı ise bir ekranın üstünde bir bildirim mesajı çıkıyor
       else {

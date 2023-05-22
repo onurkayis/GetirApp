@@ -33,6 +33,8 @@ const ProductItem = ({item}: productItemType) => {
             '----',
             'tıklanan ürünün alt kategorisi:',
             item.subCategory,
+            "tıklanan ürünün id'si",
+            item._id,
           );
       }}
       style={{

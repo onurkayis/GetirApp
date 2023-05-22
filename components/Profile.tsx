@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useLogin} from '../context/LoginProvider';
 const {width, height} = Dimensions.get('window');
 import FontAwesome from 'react-native-vector-icons/FontAwesome';

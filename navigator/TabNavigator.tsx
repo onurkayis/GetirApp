@@ -11,6 +11,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import HomeNavigator from './HomeNavigator';
 import FavoriteProductsScreen from '../screens/FavoriteProductsScreen';
+import OrdersScreen from '../screens/OrdersScreen';
+import UserAddressesScreen from '../screens/UserAddressesScreen';
 const {height, width} = Dimensions.get('window');
 
 const Tab = createBottomTabNavigator();
@@ -107,6 +109,58 @@ const ProfileStack = () => {
                 color: 'white',
               }}>
               Favori Ürünlerim
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="OrdersScreen"
+        component={OrdersScreen}
+        options={{
+          headerTintColor: 'white',
+          headerBackVisible: false,
+          headerTitleAlign: 'center',
+          headerStyle: {backgroundColor: '#5C3EBC'},
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ProfileScreen')}>
+              <Ionicons name="close" size={26} color="white" />
+            </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <Text
+              style={{
+                fontFamily: 'Poppins-SemiBold',
+                fontSize: 13,
+                color: 'white',
+              }}>
+              Siparişlerim
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="UserAddressesScreen"
+        component={UserAddressesScreen}
+        options={{
+          headerTintColor: 'white',
+          headerBackVisible: false,
+          headerTitleAlign: 'center',
+          headerStyle: {backgroundColor: '#5C3EBC'},
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ProfileScreen')}>
+              <Ionicons name="close" size={26} color="white" />
+            </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <Text
+              style={{
+                fontFamily: 'Poppins-SemiBold',
+                fontSize: 13,
+                color: 'white',
+              }}>
+              Adreslerim
             </Text>
           ),
         }}
