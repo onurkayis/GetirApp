@@ -1,7 +1,4 @@
-import {
-  useNavigation,
-  getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Dimensions, Image, Text, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -19,12 +16,14 @@ const {height, width} = Dimensions.get('window');
 const Stack = createNativeStackNavigator();
 const tabHiddenRoutes = ['ProductDetails', 'CartScreen'];
 
+//ana sayfa ekranlarını tanımlama
 function HomeStack({navigation, route}: {}) {
   const [show, setShow] = useState(true);
   const subTotal = useSelector(selectSubTotal);
   console.log(subTotal);
   const dispatch = useDispatch();
 
+  //istenilen sayfalarda bottom tab navigator'ı saklama
   React.useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);
     console.log('Route Name is ', routeName);
@@ -39,6 +38,7 @@ function HomeStack({navigation, route}: {}) {
 
   return (
     <Stack.Navigator>
+      {/* anasayfa sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
@@ -56,6 +56,7 @@ function HomeStack({navigation, route}: {}) {
           ),
         }}
       />
+      {/* kategori detay sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="CategoryDetails"
         component={CategoryFilterScreen}
@@ -75,8 +76,10 @@ function HomeStack({navigation, route}: {}) {
               Ürünler
             </Text>
           ),
+          //sepet iconunu oluşturma
           headerRight: () => (
             <TouchableOpacity
+              //sepet ekranına yönlendirme
               onPress={() => navigation.navigate('CartScreen')}
               style={{
                 width: width * 0.22,
@@ -86,6 +89,7 @@ function HomeStack({navigation, route}: {}) {
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
+              {/* sepet resmi kodları ve stil kodları */}
               <Image
                 style={{width: 23, height: 23, marginLeft: 6}}
                 source={require('../assets/cart.png')}
@@ -101,6 +105,7 @@ function HomeStack({navigation, route}: {}) {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
+                {/* sepet fiyatını gösterme kodu ve stil kodları */}
                 <Text
                   style={{
                     color: '#5D3EBD',
@@ -115,6 +120,7 @@ function HomeStack({navigation, route}: {}) {
           ),
         }}
       />
+      {/* ürün detay sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailScreen}
@@ -123,11 +129,13 @@ function HomeStack({navigation, route}: {}) {
           headerBackVisible: false,
           headerTitleAlign: 'center',
           headerStyle: {backgroundColor: '#5C3EBC'},
+          //eski ekrana geri dönme
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="close" size={26} color="white" />
             </TouchableOpacity>
           ),
+          //üst başlık yazısının kodları ve stil kodları
           headerTitle: () => (
             <Text
               style={{
@@ -138,13 +146,19 @@ function HomeStack({navigation, route}: {}) {
               Ürün Detayı
             </Text>
           ),
+          //ürün detaydaki kalp iconunun kodları ve stil kodları
           headerRight: () => (
             <TouchableOpacity
               onPress={() => {
                 setShow(prev => !prev);
               }}>
               {show ? (
-                <Octicons name="heart" size={21} color="white" />
+                <Octicons
+                  onPress={() => {}}
+                  name="heart"
+                  size={21}
+                  color="white"
+                />
               ) : (
                 <Octicons name="heart-fill" size={21} color="#F7D102" />
               )}
@@ -152,6 +166,7 @@ function HomeStack({navigation, route}: {}) {
           ),
         }}
       />
+      {/* sepet sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="CartScreen"
         component={CartScreen}
@@ -160,11 +175,13 @@ function HomeStack({navigation, route}: {}) {
           headerBackVisible: false,
           headerTitleAlign: 'center',
           headerStyle: {backgroundColor: '#5C3EBC'},
+          // eski ekrana geri dönme
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons name="close" size={26} color="white" />
             </TouchableOpacity>
           ),
+          //üst başlıktaki title'ın kodları ve stil kodları
           headerTitle: () => (
             <Text
               style={{
@@ -175,9 +192,12 @@ function HomeStack({navigation, route}: {}) {
               Sepetim
             </Text>
           ),
+          //sepeti temizleme icon kodları
           headerRight: () => (
             <TouchableOpacity
+              //icona tıklandığında sepeti temizliyoruz
               onPress={() => dispatch(cartSlice.actions.clearCart())}>
+              {/* çöp kutusu iconu kodu */}
               <Ionicons name="trash" size={22} color="white" />
             </TouchableOpacity>
           ),

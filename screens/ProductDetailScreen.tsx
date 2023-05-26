@@ -12,8 +12,10 @@ import DetailBox from '../components/DetailBox';
 import DetailProperty from '../components/DetailProperty';
 import AddToCartButton from '../components/AddToCartButton';
 
+//product detail screen sayfası kodları
 const ProductDetailScreen = props => {
   const [product, setProduct] = useState<Product>();
+  //ürünün bilgilerini aktarıyoruz
   useEffect(() => {
     setProduct(props.route.params.product);
   }, []);
@@ -25,13 +27,16 @@ const ProductDetailScreen = props => {
   return (
     <View style={styles.container}>
       <ScrollView>
+        {/* ürünün resminin gösterildiği kod */}
         <ImageCarousel images={product.images} />
+        {/* ürünün bilgilerinin gösterildi kod */}
         <DetailBox
           price={product.price}
           name={product.name}
           amount={product.amount}
           discountedPrice={product.discountedPrice}
         />
+        {/* detaylar yazısının kodu ve stil kodları */}
         <Text
           style={{
             marginHorizontal: 12,
@@ -42,6 +47,7 @@ const ProductDetailScreen = props => {
           }}>
           Detaylar
         </Text>
+        {/* ürün detayındaki açıklamalar */}
         <DetailProperty
           description={product.description}
           ingredients={product.ingredients}
@@ -50,6 +56,7 @@ const ProductDetailScreen = props => {
           additionalInformation={product.additionalInformation}
         />
       </ScrollView>
+      {/* sepete ekle componenti kodu */}
       <AddToCartButton item={product} />
     </View>
   );
@@ -58,6 +65,7 @@ const ProductDetailScreen = props => {
 export default ProductDetailScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',

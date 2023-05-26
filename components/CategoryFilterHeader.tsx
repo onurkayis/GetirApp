@@ -13,6 +13,7 @@ import {useRoute} from '@react-navigation/native';
 import ProductsContainer from './ProductsContainer';
 const {width, height} = Dimensions.get('window');
 
+//category box fonksiyonu
 const CategoryBox = ({
   item,
   activeName,
@@ -64,6 +65,7 @@ const CategoryBox = ({
   );
 };
 
+//ana kategori componenti
 const CategoryFilterHeader = () => {
   const route = useRoute();
   const scrollViewRef = useRef<ScrollView>(null);
@@ -72,8 +74,10 @@ const CategoryFilterHeader = () => {
   const [activeCat, setActiveCat] = useState('');
   const [subCategories, setSubCategories] = useState([]);
 
+  //kategorileri veritabanıncan çekme
   const fetchData = async () => {
     const response = await client.get('/categories');
+    //categories'e veritabanından gelen kategorileri atama
     setCategories(response.data);
   };
 
@@ -81,13 +85,15 @@ const CategoryFilterHeader = () => {
     fetchData();
   }, []);
 
+  //kategıriye tıklandığında aktif kategoriyi gösterir ve alt kategorilerini gösterir
   useEffect(() => {
     const selectedCategory = route.params?.selectedCategory ?? '';
     const subCategories = route.params?.subCategories ?? [];
     setActiveCat(selectedCategory);
     setSubCategories(subCategories);
 
-    // Scroll to selected category if it's not visible
+    // ana sayfadaki kategorilerden hangisine basıldıysa
+    // kategori detayda o kategori nerde ise oraya otomatik kaydırma işlemi yapılır
     const activeCategoryIndex = categories.findIndex(
       item => item.name === selectedCategory,
     );
@@ -99,6 +105,7 @@ const CategoryFilterHeader = () => {
     }
   }, [route.params, categories]);
 
+  //kategoriye tıklandığında aktif kategoriyi gösterir
   const handleSetActiveCat = (catName: string) => {
     if (catName === activeCat) {
       setActiveCat('');
@@ -110,6 +117,7 @@ const CategoryFilterHeader = () => {
 
   return (
     <>
+      {/* scroll view ile ekrana kaydırma özelliği veriyoruz */}
       <ScrollView
         ref={scrollViewRef}
         style={{
@@ -120,6 +128,7 @@ const CategoryFilterHeader = () => {
         showsHorizontalScrollIndicator={false}
         bounces={true}
         horizontal={true}>
+        {/*  kategorileri map ederek listeliyoruz */}
         {categories.map(item => (
           <CategoryBox
             key={item._id}
@@ -130,7 +139,9 @@ const CategoryFilterHeader = () => {
           />
         ))}
       </ScrollView>
+      {/* alt kategori componenti */}
       <TypeFiltering subCategories={subCategories} />
+      {/* ürün componenti */}
       <ProductsContainer activeCategory={activeCat} />
     </>
   );

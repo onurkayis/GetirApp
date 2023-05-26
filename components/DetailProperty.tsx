@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
+//ürün açıklamasındaki propslar
 type DetailPropertyProps = {
   description: string;
   ingredients: string;
@@ -9,6 +10,7 @@ type DetailPropertyProps = {
   additionalInformation: string;
 };
 
+//ürün açıklamasında bulunan detail property kodları
 const DetailProperty = ({
   description,
   ingredients,
@@ -24,16 +26,17 @@ const DetailProperty = ({
         marginTop: -5,
         marginBottom: 20,
       }}>
+      {/* ürün açıklaması kodu ve stili */}
       <Text
         style={{
           fontSize: 12,
           marginHorizontal: 12,
           color: 'black',
-
           fontFamily: 'Poppins-Regular',
         }}>
         {description}
       </Text>
+      {/* içindekiler yazısının kodu ve stili */}
       <Text
         style={{
           fontSize: 13,
@@ -44,16 +47,17 @@ const DetailProperty = ({
         }}>
         İçindekiler
       </Text>
+      {/* içindekiler kısmındaki açıklamanın kodu ve stili */}
       <Text
         style={{
           fontSize: 12,
           marginHorizontal: 12,
           color: 'black',
-
           fontFamily: 'Poppins-Regular',
         }}>
         {ingredients}
       </Text>
+      {/* besin değerleri yazısının kodu ve stili */}
       <Text
         style={{
           fontSize: 13,
@@ -64,16 +68,17 @@ const DetailProperty = ({
         }}>
         Besin Değerleri
       </Text>
+      {/* besin değerleri kısmındaki açıklamanın kodu ve stili */}
       <Text
         style={{
           fontSize: 12,
           marginHorizontal: 12,
           color: 'black',
-
           fontFamily: 'Poppins-Regular',
         }}>
         {nutritiveValue}
       </Text>
+      {/* kullanım yazısının kodu ve stili */}
       <Text
         style={{
           fontSize: 13,
@@ -84,16 +89,17 @@ const DetailProperty = ({
         }}>
         Kullanım
       </Text>
+      {/* kullanım kısmındaki açıklamanın kodu ve stili */}
       <Text
         style={{
           fontSize: 12,
           marginHorizontal: 12,
           color: 'black',
-
           fontFamily: 'Poppins-Regular',
         }}>
         {usage}
       </Text>
+      {/* ek bilgiler yazısının kodu ve stili */}
       <Text
         style={{
           fontSize: 13,
@@ -104,12 +110,12 @@ const DetailProperty = ({
         }}>
         Ek Bilgiler
       </Text>
+      {/* ek bilgiler kısmındaki açıklamanın kodu ve stili */}
       <Text
         style={{
           fontSize: 12,
           marginHorizontal: 12,
           color: 'black',
-
           fontFamily: 'Poppins-Regular',
         }}>
         {additionalInformation}

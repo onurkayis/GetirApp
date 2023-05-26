@@ -16,9 +16,11 @@ const emailRegx =
 
 //validasyon işlemleri
 const validationSchema = Yup.object({
+  //eposta validasyonu
   epostaAdresi: Yup.string()
     .matches(emailRegx, 'Geçersiz E-posta!')
     .required('E-posta alanı boş olamaz!'),
+  //şifre validasyonu
   sifre: Yup.string()
     .trim()
     .min(8, 'Şifre 8 karakterden az olamaz!')
@@ -73,6 +75,7 @@ const LoginForm = () => {
   //tasarım kodları
   return (
     <View style={styles.container}>
+      {/* formik kütüphanesi kullanarak form oluşturuyoruz */}
       <Formik
         initialValues={userInfo}
         validationSchema={validationSchema}
@@ -89,6 +92,7 @@ const LoginForm = () => {
           const {epostaAdresi, sifre} = values;
           return (
             <>
+              {/* giriş sayfasındaki e posta adresi inputunun kodları ve özellikleri */}
               <FormInput
                 value={epostaAdresi}
                 error={touched.epostaAdresi && errors.epostaAdresi}
@@ -99,6 +103,7 @@ const LoginForm = () => {
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
+              {/* giriş sayfasındaki şifre inputunun kodları ve özellikleri */}
               <FormInput
                 value={sifre}
                 error={touched.sifre && errors.sifre}
@@ -110,23 +115,28 @@ const LoginForm = () => {
                 secureTextEntry={isSecureEntry}
                 autoCapitalize="none"
                 icon={
+                  // şifre inputundaki şifreyi gösterme gizleme iconunun kodları ve stilleri
                   <TouchableOpacity
                     onPress={() => {
                       setIsSecureEntry(prev => !prev);
                     }}>
                     {isSecureEntry ? (
+                      //şifre gizliyken gösterilen icon
                       <Ionicons name="eye-off" size={18} color="#4C3398" />
                     ) : (
+                      //şifre açıkken gösterilen icon
                       <Ionicons name="eye" size={18} color="#4C3398" />
                     )}
                   </TouchableOpacity>
                 }
               />
+              {/* giriş yap butonunun kodları ve özellikleri */}
               <FormSubmitButton
                 submitting={isSubmitting}
                 onPress={handleSubmit}
                 title={'Giriş Yap'}
               />
+              {/* şifremi unuttum yazısının kodu */}
               <Text style={styles.txtSifremiUnuttum}>
                 Şifrenizi mi unuttunuz?
                 <Text
@@ -139,6 +149,7 @@ const LoginForm = () => {
                   Şifremi Unuttum
                 </Text>
               </Text>
+              {/* üye ol yazısının kodları */}
               <Text style={styles.txtUyeOl}>
                 Hesabınız yok mu?
                 <Text
@@ -163,15 +174,18 @@ export default LoginForm;
 
 //css kodları
 const styles = StyleSheet.create({
+  //ana component stil kodları
   container: {
     alignItems: 'center',
   },
+  //üye ol yazısının stil kodları
   txtUyeOl: {
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
     color: '#73777B',
     marginTop: 100,
   },
+  //şifremi unuttum yazısının stil kodları
   txtSifremiUnuttum: {
     fontSize: 13,
     fontFamily: 'Poppins-Regular',

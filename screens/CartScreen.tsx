@@ -16,17 +16,18 @@ import {cartSlice, selectSubTotal} from '../store/cartSlice';
 import client from '../api/client';
 import {useLogin} from '../context/LoginProvider';
 import {useNavigation} from '@react-navigation/native';
-import {showMessage} from 'react-native-flash-message';
 import {useStripe} from '@stripe/stripe-react-native';
 
+//Sepet sayfası kodları
 const CartScreen = () => {
   const {setLoginPending, profile} = useLogin();
   const cartItems = useSelector(state => state.cart.items);
   const subTotal = useSelector(selectSubTotal);
-  const navigation = useNavigation();
+
   const dispatch = useDispatch();
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
 
+  //payment işlemi kodları
   const onCheckout = async () => {
     // 1. Create a payment intent
     const res = await client.post('/payments/intents', {
@@ -56,6 +57,7 @@ const CartScreen = () => {
     }
     // 3. Present the Payment Sheet from Stripe
     const paymentResponse = await presentPaymentSheet();
+    //eğer ödemeden çıkılırsa hata alerti gönder
     if (paymentResponse.error) {
       Alert.alert(
         `Error code: ${paymentResponse.error.code}`,
@@ -67,9 +69,11 @@ const CartScreen = () => {
     onCreateOrder();
   };
 
+  //sipariş oluşturma
   const onCreateOrder = async () => {
     setLoginPending(true);
     setTimeout(async () => {
+      //backend'e bağlanarak sipariş özelliklerini tanımlıyoruz
       const result = await client.post('/orders', {
         items: cartItems,
         totalPrice: subTotal,
@@ -80,18 +84,17 @@ const CartScreen = () => {
           email: profile.epostaAdresi,
         },
       });
+      //sipariş oluşturulduğunda kullanıcıya alert gönderme
       if (result.data.status == 'OK') {
-        /* showMessage({
-          message: 'Siparişiniz Alındı!',
-          type: 'success',
-        }); */
         Alert.alert(
           'Siparişiniz alındı',
           `Sipariş takip kodunuz: ${result.data.data.ref}`,
         );
+        //hata oluşursa kullanıcıya hata alerti gönderme
       } else {
         Alert.alert('Bir şeyler yanlış gitti :(');
       }
+      //sipariş alndıktan sonra sepeti temizleme
       dispatch(cartSlice.actions.clearCart());
       console.log(result.data.status);
       setLoginPending(false);
@@ -100,10 +103,13 @@ const CartScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* sayada kaydırma özelliği verme */}
       <ScrollView showsVerticalScrollIndicator={false} bounces={true}>
+        {/* sepetteki ürünleri flatlist ile listeleme */}
         <FlatList
           data={cartItems}
           renderItem={({item}) => (
+            //cart item componenti
             <CartItem product={item.product} quantity={item.quantity} />
           )}
         />
@@ -117,6 +123,7 @@ const CartScreen = () => {
           flexDirection: 'row',
           justifyContent: 'center',
         }}>
+        {/* devam butonun kodları ve stil kodları */}
         <TouchableOpacity
           onPress={onCheckout}
           style={{
@@ -128,6 +135,7 @@ const CartScreen = () => {
             borderTopLeftRadius: 5,
             borderBottomLeftRadius: 5,
           }}>
+          {/* devam yazısının kodu ve stil kodları */}
           <Text
             style={{
               color: 'white',
@@ -137,6 +145,7 @@ const CartScreen = () => {
             Devam
           </Text>
         </TouchableOpacity>
+        {/* sepet fiyatının gösterildi view kodları */}
         <View
           style={{
             width: width * 0.25,
@@ -148,6 +157,7 @@ const CartScreen = () => {
             borderTopRightRadius: 5,
             borderBottomRightRadius: 5,
           }}>
+          {/* tl yazısının kodları ve stil kodları */}
           <Text
             style={{
               color: '#5C3EBC',
@@ -156,6 +166,7 @@ const CartScreen = () => {
             }}>
             {'\u20BA'}
           </Text>
+          {/* sepetteki ürünlerin toplam fiyatını gösterme */}
           <Text
             style={{
               color: '#5C3EBC',
@@ -173,6 +184,7 @@ const CartScreen = () => {
 export default CartScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',

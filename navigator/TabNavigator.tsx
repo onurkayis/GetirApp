@@ -21,6 +21,7 @@ const Stack = createNativeStackNavigator();
 const SearchStack = () => {
   return (
     <Stack.Navigator>
+      {/* arama sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
@@ -44,6 +45,7 @@ const SearchStack = () => {
 const GiftStack = () => {
   return (
     <Stack.Navigator>
+      {/* indirim sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="GiftScreen"
         component={GiftScreen}
@@ -53,6 +55,7 @@ const GiftStack = () => {
             backgroundColor: '#4C3398',
           },
           headerTitleAlign: 'center',
+          //üst başlık oluşturma kodları ve stil kodları
           headerTitle: () => (
             <Image
               resizeMode="contain"
@@ -71,6 +74,7 @@ const ProfileStack = () => {
 
   return (
     <Stack.Navigator>
+      {/* profil sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
@@ -87,6 +91,7 @@ const ProfileStack = () => {
           },
         }}
       />
+      {/* favori ürünler sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="FavoriteProductsScreen"
         component={FavoriteProductsScreen}
@@ -95,12 +100,14 @@ const ProfileStack = () => {
           headerBackVisible: false,
           headerTitleAlign: 'center',
           headerStyle: {backgroundColor: '#5C3EBC'},
+          //profil ekrana geri dönme
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate('ProfileScreen')}>
               <Ionicons name="close" size={26} color="white" />
             </TouchableOpacity>
           ),
+          //üst başlık oluşturma kodları ve stil kodları
           headerTitle: () => (
             <Text
               style={{
@@ -113,6 +120,7 @@ const ProfileStack = () => {
           ),
         }}
       />
+      {/* siparişlerim sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="OrdersScreen"
         component={OrdersScreen}
@@ -121,12 +129,14 @@ const ProfileStack = () => {
           headerBackVisible: false,
           headerTitleAlign: 'center',
           headerStyle: {backgroundColor: '#5C3EBC'},
+          //profil ekranına geri dönme
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate('ProfileScreen')}>
               <Ionicons name="close" size={26} color="white" />
             </TouchableOpacity>
           ),
+          //üst başlık oluşturma kodları ve stil kodları
           headerTitle: () => (
             <Text
               style={{
@@ -139,6 +149,7 @@ const ProfileStack = () => {
           ),
         }}
       />
+      {/* adreslerim sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="UserAddressesScreen"
         component={UserAddressesScreen}
@@ -147,12 +158,14 @@ const ProfileStack = () => {
           headerBackVisible: false,
           headerTitleAlign: 'center',
           headerStyle: {backgroundColor: '#5C3EBC'},
+          //profil ekranına geri dönme
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.navigate('ProfileScreen')}>
               <Ionicons name="close" size={26} color="white" />
             </TouchableOpacity>
           ),
+          //üst başlık oluşturma kodları ve stil kodları
           headerTitle: () => (
             <Text
               style={{
@@ -173,6 +186,7 @@ const MainStack = () => {
   return null;
 };
 
+//bottom navagation bar'daki getirin ana icon kodu
 const CustomTabBarButton = () => {
   return (
     <TouchableOpacity
@@ -202,6 +216,7 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: '#959595',
         tabBarActiveTintColor: '#4C3398',
       }}>
+      {/* Bottom tab navigator'daki home sayfası */}
       <Tab.Screen
         name="Home"
         component={HomeNavigator}
@@ -215,6 +230,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+      {/* Bottom tab navigator'daki arama sayfası */}
       <Tab.Screen
         name="Search"
         component={SearchStack}
@@ -228,6 +244,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+      {/* Bottom tab navigator'daki anasayfa */}
       <Tab.Screen
         name="Main"
         component={MainStack}
@@ -235,6 +252,7 @@ const TabNavigator = () => {
           tabBarButton: props => <CustomTabBarButton {...props} />,
         }}
       />
+      {/* Bottom tab navigator'daki profile sayfası */}
       <Tab.Screen
         name="Profile"
         component={ProfileStack}
@@ -248,6 +266,7 @@ const TabNavigator = () => {
           ),
         }}
       />
+      {/* Bottom tab navigator'daki hediye sayfası */}
       <Tab.Screen
         name="Cart"
         component={GiftStack}

@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
+//arama sayfası kodları
 const SearchScreen = () => {
   return <View style={styles.container}></View>;
 };
@@ -8,6 +9,7 @@ const SearchScreen = () => {
 export default SearchScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     alignItems: 'center',

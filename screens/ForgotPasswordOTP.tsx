@@ -1,13 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import FormSubmitButton from '../components/FormSubmitButton';
-import {DarkTheme, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import {useLogin} from '../context/LoginProvider';
 import AppLoader from '../components/AppLoader';
-import {showMessage} from 'react-native-flash-message';
-import client from '../api/client';
 
+//şifre yenileme otp kodu girme ekranı kodları
 const ForgotPasswordOTP = () => {
   const navigation = useNavigation();
   const {loginPending, setLoginPending} = useLogin();
@@ -35,6 +34,7 @@ const ForgotPasswordOTP = () => {
         <Text style={styles.codeText}>
           Lütfen e-postanıza gönderilen kodu aşağıya giriniz!
         </Text>
+        {/* otp kodu girme için kullanılan kütüphane kodları ve stil kodları */}
         <OTPInputView
           pinCount={4}
           autoFocusOnLoad
@@ -51,10 +51,11 @@ const ForgotPasswordOTP = () => {
             justifyContent: 'center',
           }}
         />
-
+        {/* devam et butonu */}
         <FormSubmitButton onPress={verifyResetPasswordOTP} title={'Devam Et'} />
         <Text style={styles.tekrarGonder}>
           Kod gelmedi mi?
+          {/* tekrar gönder yazısının kodu ve stil kodları */}
           <Text
             style={{color: '#660099', fontFamily: 'Poppins-SemiBold'}}
             onPress={resendOTP}>
@@ -71,17 +72,20 @@ const ForgotPasswordOTP = () => {
 export default ForgotPasswordOTP;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  //tekrar gönder yazısının stil kodları
   tekrarGonder: {
     fontSize: 13,
     fontFamily: 'Poppins-Regular',
     top: 50,
   },
+  //
   codeText: {
     fontSize: 13,
     fontFamily: 'Poppins-Regular',

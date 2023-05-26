@@ -22,14 +22,17 @@ const emailRegx =
 const nameRegx = /^[A-Za-z ]*$/;
 
 const validationSchema = Yup.object({
+  // ad soyad validasyonu
   adSoyad: Yup.string()
     .matches(nameRegx, 'Ad soyad geçerli karakterleri içermiyor!')
     .trim()
     .min(3, 'Ad soyad 3 karakterden az olamaz!')
     .required('Ad soyad boş geçilemez!'),
+  // e posta adresi validasyonu
   epostaAdresi: Yup.string()
     .matches(emailRegx, 'Geçersiz E-posta!')
     .required('E-posta boş geçilemez!'),
+  // telefon numarası validasyonu
   telefonNumarası: Yup.string()
     .trim()
     .matches(
@@ -39,15 +42,18 @@ const validationSchema = Yup.object({
     .min(11, 'Telefon numarası 11 hane olmalıdır!')
     .max(11, 'Telefon numarası 11 hane olmalıdır!')
     .required('Telefon numarası boş geçilemez!'),
+  // şifre validasyonu
   sifre: Yup.string()
     .trim()
     .min(8, 'Şifre 8 karakterden az olamaz!')
     .required('Şifre boş geçilemez!'),
+  // şifre tekrar validasyonu
   sifreTekrar: Yup.string()
     .required('Şifre tekrar boş geçilemez!')
     .equals([Yup.ref('sifre'), null], 'Şifreler aynı olmalıdır!'),
 });
 
+// sign up form componenti kodları
 const SignUpForm = () => {
   const navigation = useNavigation();
 
@@ -99,6 +105,7 @@ const SignUpForm = () => {
 
   return (
     <View style={styles.container}>
+      {/* formik kütüphanesi ile form oluşturma */}
       <Formik
         initialValues={userInfo}
         validationSchema={validationSchema}
@@ -116,6 +123,7 @@ const SignUpForm = () => {
             values;
           return (
             <>
+              {/* ad soyad input kodları ve özellikleri */}
               <FormInput
                 value={adSoyad}
                 error={touched.adSoyad && errors.adSoyad}
@@ -124,6 +132,7 @@ const SignUpForm = () => {
                 placeholder={'Ad Soyad'}
                 label={'Ad Soyad'}
               />
+              {/* e posta adresi input kodları ve özellikleri */}
               <FormInput
                 value={epostaAdresi}
                 error={touched.epostaAdresi && errors.epostaAdresi}
@@ -134,6 +143,7 @@ const SignUpForm = () => {
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
+              {/* telefon numarası input kodları ve özellikleri */}
               <FormInput
                 value={telefonNumarası}
                 error={touched.telefonNumarası && errors.telefonNumarası}
@@ -143,6 +153,7 @@ const SignUpForm = () => {
                 label={'Cep Teleonu'}
                 keyboardType="phone-pad"
               />
+              {/* şifre input kodları ve özellikleri */}
               <FormInput
                 value={sifre}
                 error={touched.sifre && errors.sifre}
@@ -154,18 +165,22 @@ const SignUpForm = () => {
                 secureTextEntry={isSecureEntry}
                 autoCapitalize="none"
                 icon={
+                  // şifreyi göster, gizle iconu kodu
                   <TouchableOpacity
                     onPress={() => {
                       setIsSecureEntry(prev => !prev);
                     }}>
                     {isSecureEntry ? (
+                      //şifre gizliyken gösterilen icon
                       <Ionicons name="eye-off" size={18} color="#4C3398" />
                     ) : (
+                      //şifre açıkken gösterilen icon
                       <Ionicons name="eye" size={18} color="#4C3398" />
                     )}
                   </TouchableOpacity>
                 }
               />
+              {/* şifre tekrar input kodları ve özellikleri */}
               <FormInput
                 value={sifreTekrar}
                 error={touched.sifreTekrar && errors.sifreTekrar}
@@ -177,18 +192,22 @@ const SignUpForm = () => {
                 secureTextEntry={isSecureEntry2}
                 autoCapitalize="none"
                 icon={
+                  // şifreyi göster, gizle iconu kodu
                   <TouchableOpacity
                     onPress={() => {
                       setIsSecureEntry2(prev => !prev);
                     }}>
                     {isSecureEntry2 ? (
+                      // şifre gizliyken gösterilen icon
                       <Ionicons name="eye-off" size={18} color="#4C3398" />
                     ) : (
+                      // şifre açıkken gösterilen icon
                       <Ionicons name="eye" size={18} color="#4C3398" />
                     )}
                   </TouchableOpacity>
                 }
               />
+              {/* aydınlatma metni yazısının kodları */}
               <Text style={styles.txtAydınlatmaMetni}>
                 Kişisel verilerinize dair Aydınlatma Metni için
                 <Text
@@ -197,6 +216,7 @@ const SignUpForm = () => {
                   tıklayınız.
                 </Text>
               </Text>
+              {/* kullanım koşulu yazısının kodları */}
               <Text style={styles.txtKullanımKosulu}>
                 Üye olmakla,
                 <Text
@@ -206,11 +226,13 @@ const SignUpForm = () => {
                 </Text>
                 hükümlerini kabul etmektesiniz.
               </Text>
+              {/* Üye ol butonunun kodları */}
               <FormSubmitButton
                 submitting={isSubmitting}
                 onPress={handleSubmit}
                 title={'Üye Ol'}
               />
+              {/* hesabınız var mı ? giriş yap yazısının kodları */}
               <Text style={styles.txtGiris}>
                 Hesabınız var mı?
                 <Text
@@ -218,6 +240,7 @@ const SignUpForm = () => {
                     color: '#4C3398',
                     fontFamily: 'Poppins-SemiBold',
                   }}
+                  // giriş sayfasına yönlendirme
                   onPress={() => {
                     navigation.navigate('LoginScreen');
                   }}>
@@ -236,20 +259,24 @@ const SignUpForm = () => {
 export default SignUpForm;
 
 const styles = StyleSheet.create({
+  //ana component stil kodları
   container: {
     alignItems: 'center',
     top: 5,
   },
+  //giriş yap yazısının stil kodları
   txtGirisYap: {
     marginLeft: 5,
     color: '#4C3398',
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
   },
+  //giriş yazısının stil kodları
   txtGiris: {
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
   },
+  //kullanım koşulu yazısının stil kodları
   txtKullanımKosulu: {
     fontSize: 12,
     fontFamily: 'Poppins-Regular',
@@ -257,6 +284,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: 350,
   },
+  //aydınlatma metni yazısının stil kodları
   txtAydınlatmaMetni: {
     fontSize: 12,
     fontFamily: 'Poppins-Regular',

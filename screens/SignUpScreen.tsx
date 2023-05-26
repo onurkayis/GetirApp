@@ -4,11 +4,13 @@ import SignUpForm from '../components/SignUpForm';
 import AppLoader from '../components/AppLoader';
 import {useLogin} from '../context/LoginProvider';
 
+//sign up screem sayfası kodları
 export default function SignUpScreen() {
   const {loginPending} = useLogin();
 
   return (
     <>
+      {/* ana view  */}
       <View style={styles.container}>
         {/* SignUpForm componenti */}
         <SignUpForm />
@@ -19,6 +21,7 @@ export default function SignUpScreen() {
 }
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#ffffff',

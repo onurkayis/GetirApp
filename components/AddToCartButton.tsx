@@ -15,12 +15,15 @@ type addToCartButtonType = {
   item: Product;
 };
 
+//sepete ekleme butonu componenti
 const AddToCartButton = ({item}: addToCartButtonType) => {
   const dispatch = useDispatch();
 
   return (
+    //sepete ekle butonunun görünüş kodları ve stillerini oluşturduk
     <TouchableOpacity
       onPress={() => {
+        //sepete ekle butonuna basıldığında ürünü sepete ekle
         dispatch(cartSlice.actions.addItemToCart({product: item}));
       }}
       style={{

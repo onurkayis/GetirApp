@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
+//hediye ekranı kodları
 const GiftScreen = () => {
   return <View style={styles.container}></View>;
 };
@@ -8,6 +9,7 @@ const GiftScreen = () => {
 export default GiftScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     alignItems: 'center',

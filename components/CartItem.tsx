@@ -12,14 +12,17 @@ const {width, height} = Dimensions.get('window');
 import {cartSlice} from '../store/cartSlice';
 import {useDispatch} from 'react-redux';
 
+//sepet item propsu
 type CartItemProps = {
   product: Product;
   quantity: number;
 };
 
+//sepet fonksiyonu
 function index({product, quantity}: CartItemProps) {
   const dispatch = useDispatch();
 
+  //+'ya basınca ürün miktarını artırma fonksiyonu
   const increaseQuantity = () => {
     dispatch(
       cartSlice.actions.changeQuantity({
@@ -29,6 +32,7 @@ function index({product, quantity}: CartItemProps) {
     );
   };
 
+  //-'ya basınca ürün miktarını azaltma fonksiyonu
   const decreaseQuantity = () => {
     dispatch(
       cartSlice.actions.changeQuantity({
@@ -38,6 +42,7 @@ function index({product, quantity}: CartItemProps) {
     );
   };
 
+  //cart item görünüş kodları ve stil kodları
   return (
     <View
       style={{
@@ -61,6 +66,7 @@ function index({product, quantity}: CartItemProps) {
           borderBottomColor: 'lightgrey',
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          {/* ürün resmi kodları ve stili */}
           <Image
             style={{
               height: height * 0.09,
@@ -73,6 +79,7 @@ function index({product, quantity}: CartItemProps) {
           />
           <View style={{marginLeft: 8}}>
             <View>
+              {/*  ürün adı kodları ve stili */}
               <Text
                 style={{
                   fontFamily: 'Poppins-SemiBold',
@@ -82,6 +89,7 @@ function index({product, quantity}: CartItemProps) {
                 }}>
                 {product.name}
               </Text>
+              {/*  ürün miktarı kodları ve stili */}
               <Text
                 style={{
                   color: '#848897',
@@ -92,6 +100,7 @@ function index({product, quantity}: CartItemProps) {
                 {product.amount}
               </Text>
             </View>
+            {/*  ürün fiyatı kodları ve stili */}
             <Text
               style={{
                 color: '#5D3EBD',
@@ -117,6 +126,7 @@ function index({product, quantity}: CartItemProps) {
             borderWidth: 0.5,
             borderColor: 'lightgrey',
           }}>
+          {/*  ürünün adetini azaltma kodları ve stili */}
           <TouchableOpacity
             onPress={decreaseQuantity}
             style={{flex: 1, alignItems: 'center'}}>
@@ -135,10 +145,12 @@ function index({product, quantity}: CartItemProps) {
               shadowOpacity: 0.5,
               elevation: 5,
             }}>
+            {/*  ürün adeti kodları ve stili */}
             <Text style={{color: 'white', fontSize: 12, fontWeight: 'bold'}}>
               {quantity}
             </Text>
           </View>
+          {/*  ürünün adetini artırma kodları ve stili */}
           <TouchableOpacity
             onPress={increaseQuantity}
             style={{flex: 1, alignItems: 'center'}}>

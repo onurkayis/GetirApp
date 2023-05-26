@@ -24,11 +24,13 @@ export default function LoginScreen() {
 
 //Login ekranı css kodları
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
   },
+  //hosgeldiniz yazısının stil kodları
   txtHosgeldiniz: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 20,

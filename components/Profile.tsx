@@ -12,6 +12,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Zocial from 'react-native-vector-icons/Zocial';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+//Profile component kodları
 const Profile = () => {
   const {profile} = useLogin();
 
@@ -29,7 +30,9 @@ const Profile = () => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
+          {/* profildeki user iconu */}
           <FontAwesome color={'#4C3398'} name="user" size={65} />
+          {/* profildeki ad soyad yazısı kodu ve stil kodları */}
           <Text
             style={{
               fontFamily: 'Poppins-SemiBold',
@@ -56,6 +59,7 @@ const Profile = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
+              {/* profildeki kullanıcı bilgisi düzenleme iconu */}
               <TouchableOpacity>
                 <MaterialCommunityIcons
                   name="file-document-edit-outline"
@@ -74,7 +78,9 @@ const Profile = () => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
+          {/* profildeki eposta iconu */}
           <Zocial name="email" size={25} color={'#4C3398'} />
+          {/* profildeki e posta yazısının kodu ve stil kodları */}
           <Text
             style={{
               fontFamily: 'Poppins-SemiBold',
@@ -93,12 +99,14 @@ const Profile = () => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
+          {/* profildeki telefon iconu */}
           <FontAwesome
             style={{marginLeft: 5}}
             name="phone"
             size={25}
             color={'#4C3398'}
           />
+          {/* profildeki telefon numarası yazısının kodu ve stil kodları */}
           <Text
             style={{
               fontFamily: 'Poppins-SemiBold',

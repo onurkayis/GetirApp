@@ -14,18 +14,22 @@ import {useDispatch} from 'react-redux';
 import {Product} from '../models';
 import {cartSlice} from '../store/cartSlice';
 
+//
 type productItemType = {
   item: Product;
 };
 
+//product item component kodları
 const ProductItem = ({item}: productItemType) => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
 
   return (
+    // kategori detayda listelenen ürünün kodu
     <TouchableOpacity
       onPress={() => {
+        // ürüne tıklandığında ürün detay sayfasına yönlendirme
         navigation.navigate('ProductDetails', {product: item}),
           console.log(
             'tıklanan ürünün kategorisi:',
@@ -37,6 +41,7 @@ const ProductItem = ({item}: productItemType) => {
             item._id,
           );
       }}
+      // kategori detayda listelenin ürünün stil kodları
       style={{
         width: width * 0.285,
         height: height * 0.25,
@@ -45,6 +50,7 @@ const ProductItem = ({item}: productItemType) => {
         marginLeft: 12,
         marginBottom: 12,
       }}>
+      {/* ürün resim kodu ve stil kodları */}
       <Image
         style={{
           width: width * 0.285,
@@ -57,7 +63,9 @@ const ProductItem = ({item}: productItemType) => {
           uri: item.image,
         }}
       />
+      {/* ürün fiyat view'i */}
       <View style={{flexDirection: 'row', marginTop: 10, alignItems: 'center'}}>
+        {/* ürün fiyat kodu ve stil kodları */}
         <Text
           style={{
             textDecorationLine: 'line-through',
@@ -65,9 +73,11 @@ const ProductItem = ({item}: productItemType) => {
             fontWeight: 'bold',
             fontSize: 10,
           }}>
+          {/* tl yazısının kodu */}
           <Text>{'\u20BA'}</Text>
           {item.price}
         </Text>
+        {/* indirimli ürün fiyat kodu ve stil kodları */}
         <Text
           style={{
             color: '#5D3EBD',
@@ -75,14 +85,17 @@ const ProductItem = ({item}: productItemType) => {
             fontSize: 12,
             marginLeft: 4,
           }}>
+          {/* tl yazısının kodu */}
           <Text>{'\u20BA'}</Text>
           {item.discountedPrice}
         </Text>
       </View>
+      {/* ürün isminin kodu ve stil kodları */}
       <Text
         style={{fontWeight: '600', fontSize: 13, marginTop: 4, color: 'black'}}>
         {item.name}
       </Text>
+      {/* ürün miktarının kodu ve stil kodları */}
       <Text
         style={{
           color: '#747990',
@@ -92,8 +105,10 @@ const ProductItem = ({item}: productItemType) => {
         }}>
         {item.amount}
       </Text>
+      {/* üründeki +'nın kodu ve stil kodları */}
       <TouchableOpacity
         onPress={() => {
+          // ürünü sepete ekleme
           dispatch(cartSlice.actions.addItemToCart({product: item}));
         }}
         style={{
@@ -113,6 +128,7 @@ const ProductItem = ({item}: productItemType) => {
           width: 30,
           height: 30,
         }}>
+        {/* + icon kodu ve özellikleri */}
         <Entypo name="plus" size={22} color="#5D3EBD" />
       </TouchableOpacity>
     </TouchableOpacity>

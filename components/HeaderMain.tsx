@@ -3,19 +3,23 @@ import React from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 const {height} = Dimensions.get('window');
 
+//ana sayfadaki headermain component kodları
 const HeaderMain = () => {
   return (
     <View style={styles.headerMain}>
-      {/* adres */}
+      {/* adres component kodları */}
       <View style={styles.headerOne}>
+        {/* adresteki ev resminin kodu */}
         <Image
           style={styles.image}
           source={{uri: 'https://cdn.getir.com/misc/emoji/house.png'}}
         />
         <View style={styles.headerOneView}>
+          {/* ev yazısının kodu */}
           <Text testID="place-text" style={{fontWeight: '600', fontSize: 16}}>
             Ev
           </Text>
+          {/* adres bilgisinin kodu */}
           <Text
             style={{
               fontWeight: '500',
@@ -26,6 +30,7 @@ const HeaderMain = () => {
             }}>
             Dedepaşa Blv. Yenişehir Mahallesi...
           </Text>
+          {/* sağ ok iconunun kodları ve özellikleri */}
           <Entypo
             testID="right-icon"
             name="chevron-right"
@@ -35,8 +40,8 @@ const HeaderMain = () => {
         </View>
       </View>
       {/* Tv olayı */}
-
       <View style={styles.headerTwo}>
+        {/* tvs yazısının kodu ve stili */}
         <Text
           style={{
             fontSize: 10,
@@ -46,6 +51,7 @@ const HeaderMain = () => {
           }}>
           TVS
         </Text>
+        {/* 13 yazısının kodu ve stili */}
         <Text
           style={{
             fontSize: 20,
@@ -54,6 +60,7 @@ const HeaderMain = () => {
             textAlign: 'center',
           }}>
           13
+          {/* dk yazısının kodu ve stili */}
           <Text
             style={{
               fontSize: 16,
@@ -72,6 +79,7 @@ const HeaderMain = () => {
 export default HeaderMain;
 
 const styles = StyleSheet.create({
+  //header main viewinin stil kodları
   headerMain: {
     height: height * 0.064,
     flexDirection: 'row',
@@ -79,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  //sağ kısımdan ayrı kalan view'in stil kodları
   headerOne: {
     height: height * 0.064,
     width: '81%',
@@ -89,10 +98,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderBottomRightRadius: 25,
   },
+  //ev resminin stil kodları
   image: {
     height: 30,
     width: 30,
   },
+  //adres bilgilerinin stil kodları
   headerOneView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -102,6 +113,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 2,
     height: height * 0.035,
   },
+  //sağ kısımdaki sarı bölgen view'inin stil kodları
   headerTwo: {
     width: '20%',
     height: height * 0.065,

@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
   return (
+    // giriş sayfası oluşturma kodları ve üst başlık stil kodları
     <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
       <Stack.Screen
         name="LoginScreen"
@@ -29,6 +30,7 @@ const StackNavigator = () => {
           },
         }}
       />
+      {/* şifremi unuttum sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="ForgotPasswordScreen"
         component={ForgotPasswordScreen}
@@ -44,6 +46,7 @@ const StackNavigator = () => {
           },
         }}
       />
+      {/* üye ol sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="SignUpScreen"
         component={SignUpScreen}
@@ -59,6 +62,7 @@ const StackNavigator = () => {
           },
         }}
       />
+      {/* şifremi unuttum kod girme sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="ForgotPasswordOTP"
         component={ForgotPasswordOTP}
@@ -74,6 +78,7 @@ const StackNavigator = () => {
           },
         }}
       />
+      {/* şifremi değiştirme sayfası oluşturma kodları ve üst başlık stil kodları */}
       <Stack.Screen
         name="ChangePasswordScreen"
         component={ChangePasswordScreen}

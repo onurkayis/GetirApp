@@ -8,14 +8,16 @@ import ProfileButtons from '../components/ProfileButtons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+//profil sayfası ekran kodları
 const ProfileScreen = () => {
   const {loginPending, setIsLoggedIn, setLoginPending} = useLogin();
 
   return (
     <>
       <View style={styles.container}>
+        {/* profil componenti */}
         <Profile />
-
+        {/* profildeki favori ürünlerim butonu */}
         <ProfileButtons
           title={'Favori Ürünlerim'}
           screenName={'FavoriteProductsScreen'}
@@ -28,6 +30,7 @@ const ProfileScreen = () => {
             />
           }
         />
+        {/* profildeki siparişlerim butonu */}
         <ProfileButtons
           title={'Siparişlerim'}
           screenName={'OrdersScreen'}
@@ -40,7 +43,7 @@ const ProfileScreen = () => {
             />
           }
         />
-
+        {/* profildeki adreslerim butonu */}
         <ProfileButtons
           title={'Adreslerim'}
           screenName={'UserAddressesScreen'}
@@ -53,7 +56,7 @@ const ProfileScreen = () => {
             />
           }
         />
-
+        {/* profildeki çıkış yapma butonu kodları ve stil kodları*/}
         <View style={{alignItems: 'center', marginTop: 30}}>
           <TouchableOpacity
             style={{
@@ -64,6 +67,7 @@ const ProfileScreen = () => {
               justifyContent: 'center',
               borderRadius: 5,
             }}
+            //çıkış yapma fonksiyonu
             onPress={async () => {
               setLoginPending(true);
               setTimeout(async () => {
@@ -74,6 +78,7 @@ const ProfileScreen = () => {
                 setLoginPending(false);
               }, 3000);
             }}>
+            {/* çıkış yap yazısının kodları ve stil kodları */}
             <Text style={{fontFamily: 'Poppins-SemiBold', color: '#ffffff'}}>
               Çıkış Yap
             </Text>
@@ -88,6 +93,7 @@ const ProfileScreen = () => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',

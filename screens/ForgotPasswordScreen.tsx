@@ -16,6 +16,7 @@ const emailRegx =
 
 //e-posta için validasyon işlemi
 const validationSchema = Yup.object({
+  //eposta adresi validasyonu
   epostaAdresi: Yup.string()
     .matches(emailRegx, 'Geçersiz E-posta!')
     .required('E-posta alanı boş olamaz!'),
@@ -57,6 +58,7 @@ const ForgotPasswordScreen = () => {
   return (
     <>
       <View style={styles.container}>
+        {/* formik kütüphanesi ile form oluşturma */}
         <Formik
           initialValues={userInfo}
           validationSchema={validationSchema}
@@ -73,10 +75,12 @@ const ForgotPasswordScreen = () => {
             const {epostaAdresi} = values;
             return (
               <>
+                {/* bağlantı yazısının kodu */}
                 <Text style={styles.txtBaglanti}>
                   Şifre yenileme kodunu gönderebilmemiz için e-posta adresinize
                   ihtiyacımız var!
                 </Text>
+                {/* şifremi unuttum sayfasındaki eposta adresi inputunun kodları ve özellikleri */}
                 <FormInput
                   value={epostaAdresi}
                   error={touched.epostaAdresi && errors.epostaAdresi}
@@ -87,7 +91,7 @@ const ForgotPasswordScreen = () => {
                   keyboardType="email-address"
                   autoCapitalize="none"
                 />
-
+                {/* Gönder butonunun kodları ve özellikleri */}
                 <FormSubmitButton
                   submitting={isSubmitting}
                   onPress={handleSubmit}
@@ -106,12 +110,14 @@ const ForgotPasswordScreen = () => {
 export default ForgotPasswordScreen;
 
 const styles = StyleSheet.create({
+  //sayfanın stil kodları
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  //bağlantı yazısının stil kodları
   txtBaglanti: {
     fontFamily: 'Poppins-Regular',
     fontSize: 13,
