@@ -9,8 +9,7 @@ import {LogBox} from 'react-native';
 import {StripeProvider} from '@stripe/stripe-react-native';
 LogBox.ignoreAllLogs();
 
-const STRIPE_KEY =
-  'pk_test_51N6ucZBa75lRg5wP30ypUm3gncRAXY01nSXDV03YBX0prU6Nwe00JDxKW4WJbKRbG3uJdSe90rf2SfAFcuKGttsB00NjVgV9iy';
+
 
 export default function App() {
   return (
